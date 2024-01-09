@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    color: red;
+    font-size: 70px;
+    padding: 5px;
+}
+
+
+.calculator-box {
+    display: flex;
+    flex-direction: row;
+}
+
+#operators {
+    display: flex;
+    flex-direction: column;
+}
+
+#non-operators {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    gap: 5px;
+}
+
+.row > * {
+    flex: 2;
+}
+
+.row > #dot {
+    flex: 1;
+}
+
+#input-box {
+    height: 50px;
+    font-size: 50px;
+}
