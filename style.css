@@ -3,10 +3,21 @@
     padding: 0;
 }
 
+html, body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 button {
     color: red;
-    font-size: 70px;
-    padding: 5px;
+    font-size: 30px;
+    border-radius: 0;
+    border-width: 5px;
+    height: 60px;
 }
 
 
@@ -18,6 +29,7 @@ button {
 #operators {
     display: flex;
     flex-direction: column;
+    width: 60px;
 }
 
 #non-operators {
@@ -28,19 +40,40 @@ button {
 .row {
     display: flex;
     flex-direction: row;
-    width: 300px;
-    gap: 5px;
+    width: 180px;
+    
 }
 
 .row > * {
-    flex: 2;
-}
-
-.row > #dot {
+    margin: 0;
+    box-sizing: border-box;
     flex: 1;
 }
 
+.row > #dot {
+    flex: 0;
+    flex-basis: 60px;
+    background-color: yellow;
+}
+
+.row > :last-child{
+    background-color: yellow;
+}
+
 #input-box {
-    height: 50px;
-    font-size: 50px;
+    display: flex;
+    flex-direction: row;
+    height: 300px;
+    font-size: 30px;
+    align-self: first baseline;
+    align-items: end;
+}
+
+.full-ui {
+    width: 50%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
