@@ -56,6 +56,7 @@ function unaryOperatorPress(e){
     let temp = parseFloat(inputBox.textContent);
     let func = operatorMatches[e.target.id];
     temp = func(temp);
+    temp = Math.round(temp * 1e8)/1e8;
     inputBox.textContent = temp.toString();
 }
 
@@ -71,7 +72,7 @@ function clearCalculator(){
 // turns the decimal back on - whenever a binary operator is pressed, or calculator is cleared
 function enableDecimal(){
     decimalButton.disabled = false;
-    decimalButton.setAttribute('style', 'background-color: buttonface');
+    decimalButton.setAttribute('style', 'background-color: black');
 }
 
 // an object which matches each operator ID to an arrow function

@@ -1,35 +1,13 @@
 * {
-    margin: 0;
-    padding: 0;
+    font-family: 'Seven Segment', sans-serif;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-button {
-    color: red;
-    font-size: 30px;
-    border-radius: 0;
-    border-width: 5px;
-    height: 60px;
-}
-
-
-.calculator-box {
-    display: flex;
-    flex-direction: row;
-}
-
+/* First, we want to use a flex container around the operators */
 #operators {
     display: flex;
     flex-direction: column;
-    width: 60px;
+    flex: 0;
+    flex-basis: 25%;
 }
 
 #non-operators {
@@ -37,43 +15,84 @@ button {
     flex-direction: column;
 }
 
-.row {
+/*They took up the entirety of the width. We need to restrain its space*/
+.calculator-box {
     display: flex;
     flex-direction: row;
-    width: 180px;
-    
 }
 
-.row > * {
-    margin: 0;
-    box-sizing: border-box;
+.calculator-box > *{
     flex: 1;
 }
 
-.row > #dot {
-    flex: 0;
-    flex-basis: 60px;
-    background-color: yellow;
+.calculator-box > * > * {
+    flex: 1;
 }
 
-.row > :last-child{
-    background-color: yellow;
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.row > * {
+    flex: 1;
+}
+
+/* this is so weird but it is needed */
+.last-row{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+.last-row > * {
+    display: flex;
+    flex: 1;
+}
+
+.last-row > * > * {
+    flex: 1;
+}
+
+.last-row > :last-child {
+    flex: 0.5;
+}
+
+/* I wanna move it to the center */
+html, body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: antiquewhite;
+}
+
+/* want to give the input box a minimum height/flex basis */
+.full-ui {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 60%;
+}
+
+.full-ui > *{
+    flex: 1;
 }
 
 #input-box {
-    display: flex;
-    flex-direction: row;
-    height: 300px;
-    font-size: 30px;
-    align-self: first baseline;
-    align-items: end;
+    flex: 0;
+    flex-basis: 25px;
+    font-size: 20px;
+    border-style: outset;
+    background-color: black;
+    border-width: 2px;
+    border-color: gray;
+    color: white;
 }
 
-.full-ui {
-    width: 50%;
-    height: 75%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* now gonna add fonts n colors to the buttons */
+button {
+    background-color: black;
+    color: white;
 }
