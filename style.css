@@ -12,7 +12,7 @@ html, body, .calculator-button-box, .row, .last-row {
     flex-direction: column;
 }
 
-.calculator-button-box, #non-operators, .row, .last-row, .binary-operator, .row > *, .last-row > *, [id='0'], #dot {
+.calculator-button-box, #non-operators, .row, .last-row, .binary-operator, .row > *, .last-row > *, [id='0'], [id='.'] {
     flex: 1
 }
 

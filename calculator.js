@@ -12,11 +12,11 @@ let digits = document.querySelectorAll('.number');
 let binaryOperators = document.querySelectorAll('.binary-operator');
 let unaryOperators = document.querySelectorAll('.unary-operator');
 let clearButton = document.querySelector('#clear');
-let decimalButton = document.querySelector('#dot');
+let decimalButton = document.querySelector('[id = \'.\']');
 
 // adding event listeners
 digits.forEach(digit => {
-    digit.addEventListener('click', (e) => fillInputBox(e));
+    digit.addEventListener('click', (e) => fillInputBox(e.target.id));
 });
 binaryOperators.forEach(currentOperator => {
     currentOperator.addEventListener('click', (e) => binaryOperatorPress(e));
@@ -25,20 +25,17 @@ unaryOperators.forEach(operator => {
     operator.addEventListener('click', (e) => unaryOperatorPress(e));
 })
 clearButton.addEventListener('click', clearCalculator);
-decimalButton.addEventListener('click', (e) => fillInputBox(e));
+decimalButton.addEventListener('click', (e) => fillInputBox(e.target.id));
 
 //----------CALLBACK FUNCTIONS----------
 // fills the input box whenever one of the numbers, or the dot is is pressed
-function fillInputBox(e) {
+function fillInputBox(char) {
     if (awaitingInput) {
         inputBox.textContent = '';
         awaitingInput = false;
     }
-    if (e.target.id === 'dot') {
-        inputBox.textContent += '.';
-        decimalButton.disabled = true;
-        decimalButton.setAttribute('style', 'background-color: gray')
-    } else inputBox.textContent += e.target.id;
+    if (char === '.') {disableDecimal();}
+    inputBox.textContent += char;
 }
 
 // callback when a binary operator is pressed
@@ -55,13 +52,13 @@ function unaryOperatorPress(e){
     temp = func(temp);
     temp = Math.round(temp * 1e8)/1e8;
     inputBox.textContent = temp.toString();
+    if (/./.test(temp.toString())) {disableDecimal();}
 }
 
 // callback for AC, clears the calculator
 function clearCalculator(){
     inputBox.textContent = '';
-    prev = null;
-    current = null;
+    prev = current = null;
     enableDecimal();
 }
 
@@ -70,6 +67,12 @@ function clearCalculator(){
 function enableDecimal(){
     decimalButton.disabled = false;
     decimalButton.setAttribute('style', 'background-color: black');
+}
+
+// turns decimal back off
+function disableDecimal(){
+    decimalButton.disabled = true;
+    decimalButton.setAttribute('style', 'background-color: gray')
 }
 
 // an object which matches each operator ID to an arrow function
@@ -90,9 +93,7 @@ function readInputBox(){
         current = operator(prev, current);
         current = Math.round(current * 1e8)/1e8
         inputBox.textContent = current.toString()
-    } else {
-        current = parseFloat(inputBox.textContent);
-    }
+    } else {current = parseFloat(inputBox.textContent);}
     awaitingInput = true;
     enableDecimal();
 }
