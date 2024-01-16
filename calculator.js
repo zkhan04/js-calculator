@@ -1,9 +1,6 @@
 //----------STATE VARIABLES----------
-// two variables used to store calculator memory
-let prev = current = null;
-
-// the operator that the calculator should call (+, -, *, /)
-let operator;
+// prev & current used to store calculator memory, operator used to store current operation
+let prev = current = currentOperator = null;
 
 // if the calculator should keep writing on top of whatever's displayed, or clear and start again.
 let awaitingInput = true;
@@ -21,8 +18,8 @@ let decimalButton = document.querySelector('#dot');
 digits.forEach(digit => {
     digit.addEventListener('click', (e) => fillInputBox(e));
 });
-binaryOperators.forEach(operator => {
-    operator.addEventListener('click', (e) => binaryOperatorPress(e));
+binaryOperators.forEach(currentOperator => {
+    currentOperator.addEventListener('click', (e) => binaryOperatorPress(e));
 })
 unaryOperators.forEach(operator => {
     operator.addEventListener('click', (e) => unaryOperatorPress(e));

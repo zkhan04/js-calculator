@@ -1,98 +1,56 @@
-* {
-    font-family: 'Seven Segment', sans-serif;
+/* ANNOYING FLEX STUFF */
+
+html, body, .full-ui, .calculator-button-box, #operators, #non-operators, .row, .last-row, .last-row > * {
+    display: flex;
 }
 
-/* First, we want to use a flex container around the operators */
+html, body, .calculator-button-box, .row, .last-row {
+    flex-direction: row;
+}
+
+#operators, #non-operators, .full-ui {
+    flex-direction: column;
+}
+
+.calculator-button-box, #non-operators, .row, .last-row, .binary-operator, .row > *, .last-row > *, [id='0'], #dot {
+    flex: 1
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: antiquewhite;
+}
+
+.full-ui {
+    width: 30%;
+    height: 60%;
+}
+
+#input-box {
+    flex-basis: 25px;
+}
+
 #operators {
-    display: flex;
-    flex-direction: column;
-    flex: 0;
-    flex-basis: 25%;
-}
-
-#non-operators {
-    display: flex;
-    flex-direction: column;
-}
-
-/*They took up the entirety of the width. We need to restrain its space*/
-.calculator-box {
-    display: flex;
-    flex-direction: row;
-}
-
-.calculator-box > *{
-    flex: 1;
-}
-
-.calculator-box > * > * {
-    flex: 1;
-}
-
-.row {
-    display: flex;
-    flex-direction: row;
-}
-
-.row > * {
-    flex: 1;
-}
-
-/* this is so weird but it is needed */
-.last-row{
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-}
-
-.last-row > * {
-    display: flex;
-    flex: 1;
-}
-
-.last-row > * > * {
-    flex: 1;
+    flex: .33333;
 }
 
 .last-row > :last-child {
     flex: 0.5;
 }
 
-/* I wanna move it to the center */
-html, body {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: antiquewhite;
+/* ACTUAL STYLING */
+* {
+    font-family: 'Seven Segment', sans-serif;
 }
 
-/* want to give the input box a minimum height/flex basis */
-.full-ui {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    height: 60%;
-}
-
-.full-ui > *{
-    flex: 1;
-}
-
-#input-box {
-    flex: 0;
-    flex-basis: 25px;
-    font-size: 20px;
+#input-box, button {
+    background-color: black;
+    color: white;
     border-style: outset;
-    background-color: black;
-    border-width: 2px;
+    border-width: 3px;
     border-color: gray;
-    color: white;
-}
-
-/* now gonna add fonts n colors to the buttons */
-button {
-    background-color: black;
-    color: white;
+    font-size: 20px;
 }
