@@ -46,15 +46,15 @@ digits.forEach(digit => {
     digit.addEventListener('click', (e) => fillInputBox(e.target.id));
 });
 binaryOperators.forEach(operator => {
-    operator.addEventListener('click', (e) => binaryOperatorPress(e));
+    operator.addEventListener('click', (e) => binaryOperatorCallback(e));
 })
 unaryOperators.forEach(operator => {
-    operator.addEventListener('click', (e) => unaryOperatorPress(e));
+    operator.addEventListener('click', (e) => unaryOperatorCallback(e));
 })
-clearButton.addEventListener('click', clearCalculator);
+clearButton.addEventListener('click', ACCallback);
 decimalButton.addEventListener('click', (e) => fillInputBox(e.target.id));
-body.addEventListener('keydown', (e) => readKeyboardDown(e.key))
-body.addEventListener('keyup', (e) => readKeyboardUp(e.key));
+body.addEventListener('keydown', (e) => keyDownCallback(e.key))
+body.addEventListener('keyup', (e) => keyUpCallback(e.key));
 
 //----------CALLBACK FUNCTIONS----------
 // fills the input box whenever one of the numbers, or the dot is pressed
@@ -66,7 +66,7 @@ function fillInputBox(char) {
 }
 
 // callback when a binary operator is pressed
-function binaryOperatorPress(e){
+function binaryOperatorCallback(e){
     readInputBox();
     refreshButtons();
     e.target.setAttribute('style', disabledStyle);
@@ -75,7 +75,7 @@ function binaryOperatorPress(e){
 }
 
 // callback for when a unary operator is pressed
-function unaryOperatorPress(e){
+function unaryOperatorCallback(e){
     let temp = parseFloat(inputBox.textContent);
     let func = operatorMatches[e.target.id];
     temp = func(temp);
@@ -85,7 +85,7 @@ function unaryOperatorPress(e){
 }
 
 // callback for AC, clears the calculator
-function clearCalculator(){
+function ACCallback(){
     refreshButtons()
     inputBox.textContent = '';
     prev = current = null;
@@ -93,14 +93,14 @@ function clearCalculator(){
 }
 
 // callback for when a key is released
-function readKeyboardUp(key){
+function keyUpCallback(key){
     if (key === 'Shift') {shiftPressed = false;}
     if (!shiftPressed && /[0-9.]/.test(key)) {fillInputBox(key);}
     else {document.querySelector(keyToOperatorButton[key]).dispatchEvent(new Event('click'));}
 }
 
 // callback for when a key is pressed down
-function readKeyboardDown(key){
+function keyDownCallback(key){
     if (key === 'Shift') shiftPressed = true;
 }
 
