@@ -1,5 +1,9 @@
 # js-calculator
-A simple calculator web app using HTML, CSS and Javascript
+A simple calculator web app using HTML, CSS and Javascript. 
+
+### 7/26/2026
+
+Never give up on your dreams.
 
 ### Update 1/16/2024
 I finished it! This was by far the hardest project I've completed so far, almost made me quit web development, but I'm happy I pushed through.
